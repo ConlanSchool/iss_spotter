@@ -1,11 +1,9 @@
-const {
-  fetchMyIP,
-  fetchCoordsByIP,
-  fetchIssFlyOverTimes,
-} = require("./iss_promised");
-//const exampleCoords = { latitude: "49.27670", longitude: "-123.13000" };
+const { nextIssTimesForMyLocation } = require("./iss_promised");
 
-fetchMyIP()
-  .then(fetchCoordsByIP)
-  .then(fetchIssFlyOverTimes)
-  .then((body) => console.log(body));
+nextIssTimesForMyLocation()
+  .then((passTimes) => {
+    printPassTimes(passTimes);
+  })
+  .catch((error) => {
+    console.log("Error: ", error.message);
+  });

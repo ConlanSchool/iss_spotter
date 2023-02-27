@@ -16,4 +16,14 @@ const fetchIssFlyOverTimes = function (body) {
   );
 };
 
-module.exports = { fetchMyIP, fetchCoordsByIP, fetchIssFlyOverTimes };
+const nextIssTimesForMyLocation = function (callback) {
+  return fetchMyIP()
+    .then(fetchCoordsByIP)
+    .then(fetchIssFlyOverTimes)
+    .then((data) => {
+      const { response } = JSON.parse(data);
+      return response;
+    });
+};
+
+module.exports = { nextIssTimesForMyLocation };
